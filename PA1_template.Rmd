@@ -1,8 +1,5 @@
----
-# title: "Reproducible Research: Peer Assessment 1"
-author: "Shantanu Das"
-date: "Sunday, December 20, 2015"
----
+"Reproducible Research: Peer Assessment 1"
+---------------------------------------------------
 
 ```{r}
 # load required packages
@@ -15,9 +12,7 @@ opts_chunk$set(echo = TRUE)
 
 # set up working directory
 setwd("~/DataScientist/Reproducible Research/RepData_PeerAssessment1")
-```
 
-```{r}
 # load data
 
 data_file <- read.csv('activity.csv')
@@ -38,8 +33,9 @@ hist(steps_by_day$total, main="Histogram of total number of steps per day",
      xlab="Total number of steps in a day")
 
 summary(steps_by_day)
-
-
+```
+The mean of total number of steps is 10766, median is 10765
+```{r}
 # What is the average daily activity pattern?
 ## Make a time series plot 
 ## Which 5-minute interval contains the maximum number of steps?
@@ -75,7 +71,9 @@ for (i in 1:nrow(data_imputed)) {
     data_imputed$steps[i] <- steps_value$steps
   }
 }
-
+```
+Imputation strategy of replacing NA's with the mean for that 5 minute interval
+```{r}
 # calculate  total number of steps taken each day
 df_imputed_steps_by_day <- aggregate(steps ~ date, data_imputed, sum)
 head(df_imputed_steps_by_day)
@@ -93,7 +91,9 @@ median(df_imputed_steps_by_day$steps)
 ## What is the impact of imputing missing data on the estimates?
 mean(steps_by_day$total)
 median(steps_by_day$total)
-
+```
+Mean value stays the same but there is a small difference in median value
+```{r}
 # Are there differences in activity patterns between weekdays and weekends?
 
 ## For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.
